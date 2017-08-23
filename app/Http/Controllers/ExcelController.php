@@ -25,4 +25,12 @@ class ExcelController extends Controller
         })->store('xls')->export('xls');
     }
 
+    public function import()
+    {
+        Excel::load('storage/exports/学生成绩.xls',function ($reader) {
+            $data = $reader->all();
+            dd($data);
+        });
+    }
+
 }

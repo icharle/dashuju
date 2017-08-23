@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::any('export','ExcelController@export');
+Route::any('import','ExcelController@import');
