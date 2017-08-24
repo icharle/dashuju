@@ -28,8 +28,13 @@ class ExcelController extends Controller
     public function import()
     {
         Excel::load('storage/exports/学生成绩.xls',function ($reader) {
-            $data = $reader->all();
-            dd($data);
+
+            $reader = $reader->getSheet(0);
+            //获取表中的数据
+            $results = $reader->toArray();
+
+            dd($results);
+
         });
     }
 
