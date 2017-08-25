@@ -24,6 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('monmax')->nullable()->comment('单日最高消费');
             $table->string('libtime')->nullable()->comment('进入图书馆次数');
             $table->string('libpercent')->nullable()->comment('图书馆百分比');
+            $table->string('montime')->nullable()->comment('消费总天数');
         });
 
     }
