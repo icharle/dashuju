@@ -95,11 +95,11 @@ class ExcelController extends Controller
      */
     public function detail()
     {
-        $result = $this->import();
+        $result = $this->import("学生成绩","0");
         $data = array();
-        foreach ($result as $i => $one){
-            $data[$i][] = $one['0'];
-            $data[$i][] = $one['1'];
+        foreach ($result as $i => $value){
+            $data[$i][] = $value['0'];
+            $data[$i][] = $value['1'];
         }
         dd($data);
 
