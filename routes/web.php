@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::any('export','ExcelController@export');
 Route::any('import','ExcelController@import');
 Route::any('detail','ExcelController@detail');
+Route::any('ichunk','ExcelController@ichunk');
+Route::any('deal','ExcelController@deal');

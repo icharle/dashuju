@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\qichescore;
 use Illuminate\Http\Request;
 use Excel;
 use App\test;
@@ -97,10 +98,10 @@ class ExcelController extends Controller
      */
     public function detail()
     {
-        $result = $this->import("消费总额","0");
+        $result = $this->import("13汽车","0");
         $data = array();
         foreach ($result as $i => $value){
-//            $data[$i][] = $value['0'];
+            $data[$i][] = $value['0'];
 //            $data[$i][] = $value['2'];
 //            $data[$i][] = $value['4'];
 
@@ -114,15 +115,59 @@ class ExcelController extends Controller
             /**
              * 更新插入
              */
-            $id = $value['0'];
-            $data['money'] = $value['2'];
-            $data['monpercent'] = $value['4'];
-            Student::where('stuid',$id)->update($data);
+//            $id = $value['0'];
+//            $data['money'] = $value['2'];
+//            $data['monpercent'] = $value['4'];
+//            Student::where('stuid',$id)->update($data);
 
         }
-        //dd($data);
+        dd($data);
 
 
+    }
+    
+    /**
+     * 数据处理
+     */
+    public function deal()
+    {
+        $total = qichescore::count();
+        for ($i = 1; $i <= $total; $i++){
+            $result = qichescore::where('id',$i)->first();
+
+        }
+
+
+    }
+
+    /**
+     * 导入数据并用chunk方法
+     */
+    public function ichunk()
+    {
+        Excel::filter('chunk')->noHeading()->load('storage/exports/13汽车.xls')->chunk(1000,function ($reader){
+
+            //unset($reader['0']);
+            foreach ($reader as $row){
+
+                $data['stuid'] = $row['0'];
+                $data['stuname'] = $row['1'];
+                $data['coursetitle'] = $row['2'];
+                $data['credit'] = $row['3'];
+                $data['results'] = $row['10'];
+                $data['point'] = $row['14'];
+                $data['coursexzhi'] = $row['15'];
+                $data['schoolyear'] = $row['19'];
+                $data['semester'] = $row['20'];
+                $data['faculty'] = $row['21'];
+                $data['class'] = $row['23'];
+
+                qichescore::create($data);
+
+            }
+            //die();
+
+        });
     }
 
 }
