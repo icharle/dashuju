@@ -510,8 +510,8 @@ class ExcelController extends Controller
                 $data['faculty'] = $row['21'];
                 $data['class'] = $row['23'];
 
-                //qichescore::create($data);
-                dd($data);
+                qichescore::create($data);
+                //dd($data);
 
             }
             //die();
