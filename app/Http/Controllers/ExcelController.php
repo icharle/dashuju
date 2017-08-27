@@ -464,7 +464,45 @@ class ExcelController extends Controller
                 $data['stuname'] = $row['1'];
                 $data['coursetitle'] = $row['2'];
                 $data['credit'] = $row['3'];
-                $data['results'] = $row['10'];
+                //$data['results'] = $row['10'];
+
+                if ($row['10'] == "" && $row['15'] != '通选课'){
+                    switch ($row['14']){
+                        case '4.00':
+                            $data['results'] = 90;
+                            break;
+                        case '3.70':
+                            $data['results'] = 85;
+                            break;
+                        case '3.30':
+                            $data['results'] = 82;
+                            break;
+                        case '3.00':
+                            $data['results'] = 78;
+                            break;
+                        case '2.70':
+                            $data['results'] = 75;
+                            break;
+                        case '2.30':
+                            $data['results'] = 71;
+                            break;
+                        case '2.00':
+                            $data['results'] = 66;
+                            break;
+                        case '1.70':
+                            $data['results'] = 62;
+                            break;
+                        case '1.30':
+                            $data['results'] = 60;
+                            break;
+                        case '0.00':
+                            $data['results'] = 0;
+                            break;
+                    }
+                }else{
+                    $data['results'] = $row['10'];
+                }
+
                 $data['point'] = $row['14'];
                 $data['coursexzhi'] = $row['15'];
                 $data['schoolyear'] = $row['19'];
@@ -472,7 +510,8 @@ class ExcelController extends Controller
                 $data['faculty'] = $row['21'];
                 $data['class'] = $row['23'];
 
-                qichescore::create($data);
+                //qichescore::create($data);
+                dd($data);
 
             }
             //die();
