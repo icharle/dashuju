@@ -145,11 +145,13 @@ class ExcelController extends Controller
                 }
                 $data['kemushu'] = bcadd($results['kemushu'], 1 , 0);
                 //qiche::increment(‘kemushu‘,1);
-                if ($resultf['results'] >= 60){
+                if ($resultf['results'] < 60 && $resultf['coursexzhi'] != '通选课' ){
 
-                }else{
                     $data['gkemushu'] = bcadd($results['gkemushu'], 1 , 0);
                     //qiche::increment(‘gkemushu‘);
+
+                }else{
+
                 }
                 $data['credits'] = bcadd($resultf['credit'], $results['credits'] , 2);
                 if ($resultf['coursexzhi'] == '通选课' ){
@@ -379,10 +381,10 @@ class ExcelController extends Controller
                 $data['fenshubigc'] = $resultf['coursetitle'];
                 $data['fenshubig'] = $resultf['results'];
                 $data['kemushu'] = 1;
-                if ($resultf['results'] >= 60 ){
-                    $data['gkemushu'] = 0;
-                }else{
+                if ($resultf['results'] < 60 && $resultf['coursexzhi'] != '通选课'){
                     $data['gkemushu'] = 1;
+                }else{
+                    $data['gkemushu'] = 0;
                 }
                 $data['credits'] = $resultf['credit'];
 
