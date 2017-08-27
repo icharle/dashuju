@@ -446,6 +446,7 @@ class ExcelController extends Controller
             }
 
         }
+        $this->sdeal();
 
 
     }
@@ -456,17 +457,65 @@ class ExcelController extends Controller
     public function sdeal()
     {
         $total = qiche::count();
+        $data = array();
         for ($i = 1 ; $i<= $total; $i++){
             $result = qiche::where('id',$i)->first();
-            $data['pjpoints'] = bcdiv($result['points'] , $result['fcredits'], 2);
-            $data['yispjf'] = bcdiv($result['yiszongfen'] , $result['yiszongke'], 2);
-            $data['yixpjf'] = bcdiv($result['yixzongfen'] , $result['yixzongke'], 2);
-            $data['erspjf'] = bcdiv($result['erszongfen'] , $result['erszongke'], 2);
-            $data['erxpjf'] = bcdiv($result['erxzongfen'] , $result['erxzongke'], 2);
-            $data['sanspjf'] = bcdiv($result['sanszongfen'] , $result['sanszongke'], 2);
-            $data['sanxpjf'] = bcdiv($result['sanxzongfen'] , $result['sanxzongke'], 2);
-            $data['sispjf'] = bcdiv($result['siszongfen'] , $result['siszongke'], 2);
-            $data['sixpjf'] = bcdiv($result['sixzongfen'] , $result['sixzongke'], 2);
+
+            if ( $result['fcredits']==0 ){
+                $data['pjpoints'] = 0;
+            }else{
+                $data['pjpoints'] = bcdiv($result['points'] , $result['fcredits'], 2);
+            }
+
+            if ($result['yiszongke'] == 0){
+                $data['yispjf'] = 0;
+
+            }else{
+                $data['yispjf'] = bcdiv($result['yiszongfen'] , $result['yiszongke'], 2);
+            }
+
+            if ($result['yixzongke'] ==0){
+                $data['yixpjf'] = 0;
+
+            }else{
+                $data['yixpjf'] = bcdiv($result['yixzongfen'] , $result['yixzongke'], 2);
+            }
+
+            if ($result['erszongke'] ==0){
+                $data['erspjf'] = 0;
+            }else{
+                $data['erspjf'] = bcdiv($result['erszongfen'] , $result['erszongke'], 2);
+            }
+
+            if ($result['erxzongke'] ==0){
+                $data['erxpjf'] = 0;
+            }else{
+                $data['erxpjf'] = bcdiv($result['erxzongfen'] , $result['erxzongke'], 2);
+            }
+
+            if ($result['sanszongke'] ==0){
+                $data['sanspjf'] = 0;
+            }else{
+                $data['sanspjf'] = bcdiv($result['sanszongfen'] , $result['sanszongke'], 2);
+            }
+
+            if ($result['sanxzongke'] ==0){
+                $data['sanxpjf'] = 0;
+            }else{
+                $data['sanxpjf'] = bcdiv($result['sanxzongfen'] , $result['sanxzongke'], 2);
+            }
+
+            if ($result['siszongke'] ==0){
+                $data['sispjf'] = 0;
+            }else{
+                $data['sispjf'] = bcdiv($result['siszongfen'] , $result['siszongke'], 2);
+            }
+
+            if ($result['sixzongke'] ==0){
+                $data['sixpjf'] = 0;
+            }else{
+                $data['sixpjf'] = bcdiv($result['sixzongfen'] , $result['sixzongke'], 2);
+            }
 
             qiche::where('stuid',$result['stuid'])->update($data);
         }
