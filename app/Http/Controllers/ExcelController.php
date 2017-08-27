@@ -451,11 +451,33 @@ class ExcelController extends Controller
     }
 
     /**
+     * 计算平均绩点、平均分
+     */
+    public function sdeal()
+    {
+        $total = qiche::count();
+        for ($i = 1 ; $i<= $total; $i++){
+            $result = qiche::where('id',$i)->first();
+            $data['pjpoints'] = bcdiv($result['points'] , $result['fcredits'], 2);
+            $data['yispjf'] = bcdiv($result['yiszongfen'] , $result['yiszongke'], 2);
+            $data['yixpjf'] = bcdiv($result['yixzongfen'] , $result['yixzongke'], 2);
+            $data['erspjf'] = bcdiv($result['erszongfen'] , $result['erszongke'], 2);
+            $data['erxpjf'] = bcdiv($result['erxzongfen'] , $result['erxzongke'], 2);
+            $data['sanspjf'] = bcdiv($result['sanszongfen'] , $result['sanszongke'], 2);
+            $data['sanxpjf'] = bcdiv($result['sanxzongfen'] , $result['sanxzongke'], 2);
+            $data['sispjf'] = bcdiv($result['siszongfen'] , $result['siszongke'], 2);
+            $data['sixpjf'] = bcdiv($result['sixzongfen'] , $result['sixzongke'], 2);
+
+            qiche::where('stuid',$result['stuid'])->update($data);
+        }
+    }
+
+    /**
      * 导入数据并用chunk方法
      */
     public function ichunk()
     {
-        Excel::filter('chunk')->noHeading()->load('storage/exports/13汽车.xls')->chunk(2000,function ($reader){
+        Excel::filter('chunk')->noHeading()->load('storage/exports/13汽车.xls')->chunk(1000,function ($reader){
 
             //unset($reader['0']);
             foreach ($reader as $row){
