@@ -2,8 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\dianqiscore;
+use App\dianxinscore;
+use App\guanliscore;
+use App\guoshangscore;
+use App\jianzhuscore;
+use App\jingjiscore;
+use App\jisuaijiscore;
+use App\jixiescore;
 use App\qiche;
 use App\qichescore;
+use App\tumu;
+use App\tumuscore;
+use App\waiguoyuscore;
+use App\zhongxingscore;
+use App\zhubaoscore;
 use Illuminate\Http\Request;
 use Excel;
 use App\test;
@@ -132,11 +145,11 @@ class ExcelController extends Controller
      */
     public function deal()
     {
-        $total = qichescore::count();
+        $total = tumu::count();
         for ($i = 1; $i <= $total; $i++){
             $data = array();
-            $resultf = qichescore::where('id',$i)->first();
-            $results = qiche::where('stuid',$resultf['stuid'])->first();
+            $resultf = tumuscore::where('id',$i)->first();
+            $results = tumu::where('stuid',$resultf['stuid'])->first();
 
             if ($results){    //判断是否存在该人
                 if ($resultf['results'] > $results['fenshubig']){
@@ -371,7 +384,7 @@ class ExcelController extends Controller
 
                 }
 
-                qiche::where('stuid',$resultf['stuid'])->update($data);
+                tumu::where('stuid',$resultf['stuid'])->update($data);
                 //dd($data);
 
 
@@ -440,7 +453,7 @@ class ExcelController extends Controller
 
                 $data['faculty'] = $resultf['faculty'];
                 $data['class'] = $resultf['class'];
-                qiche::create($data);
+                tumu::create($data);
                 //dd($data);
 
             }
@@ -456,10 +469,10 @@ class ExcelController extends Controller
      */
     public function sdeal()
     {
-        $total = qiche::count();
+        $total = tumu::count();
         $data = array();
         for ($i = 1 ; $i<= $total; $i++){
-            $result = qiche::where('id',$i)->first();
+            $result = tumu::where('id',$i)->first();
 
             if ( $result['fcredits']==0 ){
                 $data['pjpoints'] = 0;
@@ -517,7 +530,7 @@ class ExcelController extends Controller
                 $data['sixpjf'] = bcdiv($result['sixzongfen'] , $result['sixzongke'], 2);
             }
 
-            qiche::where('stuid',$result['stuid'])->update($data);
+            tumu::where('stuid',$result['stuid'])->update($data);
         }
     }
 
@@ -526,7 +539,7 @@ class ExcelController extends Controller
      */
     public function ichunk()
     {
-        Excel::filter('chunk')->noHeading()->load('storage/exports/13汽车.xls')->chunk(1000,function ($reader){
+        Excel::filter('chunk')->noHeading()->load('storage/exports/13中兴.xls')->chunk(2000,function ($reader){
 
             //unset($reader['0']);
             foreach ($reader as $row){
@@ -581,7 +594,7 @@ class ExcelController extends Controller
                 $data['faculty'] = $row['21'];
                 $data['class'] = $row['23'];
 
-                qichescore::create($data);
+                zhongxingscore::create($data);
                 //dd($data);
 
             }
