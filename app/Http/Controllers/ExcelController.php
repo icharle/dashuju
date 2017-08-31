@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\dianqi;
 use App\dianqiscore;
+use App\dianxin;
 use App\dianxinscore;
+use App\guanli;
 use App\guanliscore;
+use App\guoshang;
 use App\guoshangscore;
+use App\jianzhu;
 use App\jianzhuscore;
+use App\jingji;
 use App\jingjiscore;
+use App\jisuaiji;
 use App\jisuaijiscore;
+use App\jixie;
 use App\jixiescore;
 use App\qiche;
 use App\qichescore;
 use App\tumu;
 use App\tumuscore;
+use App\waiguoyu;
 use App\waiguoyuscore;
+use App\zhongxing;
 use App\zhongxingscore;
+use App\zhubao;
 use App\zhubaoscore;
 use Illuminate\Http\Request;
 use Excel;
@@ -145,11 +156,12 @@ class ExcelController extends Controller
      */
     public function deal()
     {
-        $total = tumu::count();
+        $total = zhongxingscore::count();
+        //dd($total);
         for ($i = 1; $i <= $total; $i++){
             $data = array();
-            $resultf = tumuscore::where('id',$i)->first();
-            $results = tumu::where('stuid',$resultf['stuid'])->first();
+            $resultf = zhongxingscore::where('id',$i)->first();
+            $results = zhongxing::where('stuid',$resultf['stuid'])->first();
 
             if ($results){    //判断是否存在该人
                 if ($resultf['results'] > $results['fenshubig']){
@@ -384,7 +396,7 @@ class ExcelController extends Controller
 
                 }
 
-                tumu::where('stuid',$resultf['stuid'])->update($data);
+                zhongxing::where('stuid',$resultf['stuid'])->update($data);
                 //dd($data);
 
 
@@ -453,7 +465,7 @@ class ExcelController extends Controller
 
                 $data['faculty'] = $resultf['faculty'];
                 $data['class'] = $resultf['class'];
-                tumu::create($data);
+                zhongxing::create($data);
                 //dd($data);
 
             }
@@ -469,10 +481,10 @@ class ExcelController extends Controller
      */
     public function sdeal()
     {
-        $total = tumu::count();
+        $total = zhongxing::count();
         $data = array();
         for ($i = 1 ; $i<= $total; $i++){
-            $result = tumu::where('id',$i)->first();
+            $result = zhongxing::where('id',$i)->first();
 
             if ( $result['fcredits']==0 ){
                 $data['pjpoints'] = 0;
@@ -530,7 +542,7 @@ class ExcelController extends Controller
                 $data['sixpjf'] = bcdiv($result['sixzongfen'] , $result['sixzongke'], 2);
             }
 
-            tumu::where('stuid',$result['stuid'])->update($data);
+            zhongxing::where('stuid',$result['stuid'])->update($data);
         }
     }
 
