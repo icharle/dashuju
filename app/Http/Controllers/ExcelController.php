@@ -24,6 +24,7 @@ use App\tumu;
 use App\tumuscore;
 use App\waiguoyu;
 use App\waiguoyuscore;
+use App\xiaof;
 use App\zhongxing;
 use App\zhongxingscore;
 use App\zhubao;
@@ -617,11 +618,11 @@ class ExcelController extends Controller
     }
 
     /**
-     * 最后一次导入库
+     * 最后一次成绩导入库
      */
     public function insert()
     {
-        Excel::filter('chunk')->noHeading()->load('storage/exports/tumu.xlsx')->chunk(200,function ($reader){
+        Excel::filter('chunk')->noHeading()->load('storage/exports/guanli.xlsx')->chunk(200,function ($reader){
             foreach($reader as $row){
                 $data = array();
                 $data['stuid'] = $row['0'];
@@ -705,5 +706,28 @@ class ExcelController extends Controller
         }
         return $arr;
     }
+
+
+    /**
+     * 插入消费，图书馆
+     */
+
+    function insertlib(){
+        Excel::filter('chunk')->noHeading()->load('storage/exports/2017届毕业生在校期间消费总额.xls')->chunk(200,function ($reader){
+            foreach ($reader as $row){
+
+                $data['stuid'] = $row['0'];
+                //$data['daytime'] = $row['2'];
+                $data['count'] = $row['2'];
+                $data['chaoyuebaif'] = number_format(round($row['4'] * 100) ,0).'%' ;
+
+                //dd($data);
+                //xiaof::create($data);
+                xiaof::where('stuid',$data['stuid'])->update($data);
+
+            }
+        });
+    }
+
 
 }
