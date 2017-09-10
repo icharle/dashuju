@@ -21,3 +21,5 @@ Route::any('detail','ExcelController@detail');
 Route::any('ichunk','ExcelController@ichunk');
 Route::any('deal','ExcelController@deal');
 Route::any('sdeal','ExcelController@sdeal');
+Route::any('insert','ExcelController@insert');
+

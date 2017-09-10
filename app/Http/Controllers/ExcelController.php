@@ -28,6 +28,7 @@ use App\zhongxing;
 use App\zhongxingscore;
 use App\zhubao;
 use App\zhubaoscore;
+use App\zong;
 use Illuminate\Http\Request;
 use Excel;
 use App\test;
@@ -613,6 +614,96 @@ class ExcelController extends Controller
             //die();
 
         });
+    }
+
+    /**
+     * 最后一次导入库
+     */
+    public function insert()
+    {
+        Excel::filter('chunk')->noHeading()->load('storage/exports/tumu.xlsx')->chunk(200,function ($reader){
+            foreach($reader as $row){
+                $data = array();
+                $data['stuid'] = $row['0'];
+                $data['stuname'] = $row['1'];
+                $data['fenshubigc'] = $row['2'];
+                $data['fenshubig'] = $row['3'];
+                $data['kemushu'] = $row['4'];
+                $data['gkemushu'] = $row['5'];
+                $data['credits'] = number_format($row['6'],0);
+                $data['pjpoints'] = $row['9'];
+
+                $arr=array($row['16'],$row['23'],$row['30'],$row['37'],$row['44'],$row['51']);
+                $temp = $this->bubbleSort($arr);
+                $data['njbigpaim'] = number_format($temp['0'],0);
+
+                $data['zaixpj'] = number_format(round($row['68']),0);
+                $data['chaoyrs'] = number_format(round($row['70'] * 100),0).'%';
+                $data['fivesix'] = number_format($row['71'],0);
+                $data['sixseven'] = number_format($row['72'],0);
+                $data['sevennine'] = number_format($row['73'],0);
+                $data['ninehunder'] = number_format($row['74'],0);
+
+                $data['yishight'] = $row['10'];
+                $data['yislow'] = $row['11'];
+                $data['yispjf'] = number_format(round($row['14']),0);
+                $data['yisbjpm'] = number_format($row['15'],0);
+
+                $data['yixhight'] = $row['17'];
+                $data['yixlow'] = $row['18'];
+                $data['yixpjf'] = number_format(round($row['21']),0);
+                $data['yixbjpm'] = number_format($row['22'],0);
+
+                $data['ershight'] = $row['24'];
+                $data['erslow'] = $row['25'];
+                $data['erspjf'] = number_format(round($row['28']),0);
+                $data['ersbjpm'] = number_format($row['29'],0);
+
+                $data['erxhight'] = $row['31'];
+                $data['erxlow'] = $row['32'];
+                $data['erxpjf'] = number_format(round($row['35']),0);
+                $data['erxbjpm'] = number_format($row['36'],0);
+
+                $data['sanshight'] = $row['38'];
+                $data['sanslow'] = $row['39'];
+                $data['sanspjf'] = number_format(round($row['42']),0);
+                $data['sansbjpm'] = number_format($row['43'],0);
+
+                $data['sanxhight'] = $row['45'];
+                $data['sanxlow'] = $row['46'];
+                $data['sanxpjf'] = number_format(round($row['49']),0);
+                $data['sanxbjpm'] = number_format($row['50'],0);
+
+                $data['faculty'] = $row['66'];
+
+                //dd($data);
+                zong::create($data);
+
+            }
+
+
+
+        });
+    }
+
+    //冒泡排序
+    function bubbleSort($arr)
+    {
+        $len=count($arr);
+        //该层循环控制 需要冒泡的轮数
+        for($i=1;$i<$len;$i++)
+        { //该层循环用来控制每轮 冒出一个数 需要比较的次数
+            for($k=0;$k<$len-$i;$k++)
+            {
+                if($arr[$k]>$arr[$k+1])
+                {
+                    $tmp=$arr[$k+1];
+                    $arr[$k+1]=$arr[$k];
+                    $arr[$k]=$tmp;
+                }
+            }
+        }
+        return $arr;
     }
 
 }
