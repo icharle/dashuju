@@ -39,6 +39,17 @@ class ExcelController extends Controller
 {
 
     /**
+     * 查询收据
+     */
+    public function index()
+    {
+        $zong = zong::where('stuid','201330092088')->first();
+        $lib = xiaof::where('stuid','201330092088')->first();
+        return view('Index.index',compact('zong','lib'));
+    }
+
+
+    /**
      * 导出文件
      */
     public function export()
@@ -622,7 +633,7 @@ class ExcelController extends Controller
      */
     public function insert()
     {
-        Excel::filter('chunk')->noHeading()->load('storage/exports/guanli.xlsx')->chunk(200,function ($reader){
+        Excel::filter('chunk')->noHeading()->load('storage/exports/zhubao.xlsx')->chunk(200,function ($reader){
             foreach($reader as $row){
                 $data = array();
                 $data['stuid'] = $row['0'];
@@ -639,7 +650,7 @@ class ExcelController extends Controller
                 $data['njbigpaim'] = number_format($temp['0'],0);
 
                 $data['zaixpj'] = number_format(round($row['68']),0);
-                $data['chaoyrs'] = number_format(round($row['70'] * 100),0).'%';
+                $data['chaoyrs'] = number_format(round($row['70'] * 100),0);
                 $data['fivesix'] = number_format($row['71'],0);
                 $data['sixseven'] = number_format($row['72'],0);
                 $data['sevennine'] = number_format($row['73'],0);

@@ -1,0 +1,352 @@
+body,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,select,textarea,button,th,td{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,dl,ol{list-style:none;}
+img,fieldset,input[type="submit"]{border:0 none;}
+img{display:inline-block;overflow:hidden;vertical-align:top;}
+em{font-style:normal;}
+strong{font-weight:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+button,input[type="button"]{cursor:pointer;border:0 none;}
+textarea{word-wrap:break-word;resize:none;}  /* word-wrap for opera, resize for webkit */
+menu{margin:0;padding:0;}
+body{-webkit-user-select:none;-webkit-text-size-adjust:none!important;font-family:Helvetica;}
+input[type="number"]{-webkit-user-select:text;}
+a,button,input,img{-webkit-touch-callout:none;}/* 1.ios 长按时不触发系统的菜单 2.禁止长按时下载图片 */
+input,select,textarea{outline:none;}
+html{-ms-touch-action: none;font-size: 100%;}/* 阻止windows Phone 的默认触摸事件 */
+body{overflow: hidden;}
+.page-wrap{overflow:hidden}
+.page{display:none;width:100%;height:100%;overflow:hidden;position:absolute;top:0;left:0}
+.content{width:100%;height:100%;display:none;position:relative;z-index:0}
+.current .content,.slide .content{display:block}
+.current{display:block;z-index:1}
+.slide{display:block;z-index:2}
+.swipe{display:block;z-index:3;transition-duration:0ms!important;-webkit-transition-duration:0ms!important} 
+p{
+	width: 100%;
+	position: absolute;
+	z-index:999;
+	font-family: "微软雅黑";
+}
+canvas{
+	width: 360px;
+    position: absolute;
+    z-index: 999;
+    bottom: 80px;
+}
+#page1_message p{
+	color:#007eff;
+	font-weight: bold;
+}
+#page1_message span{
+	font-size: 20px;
+}
+#page2_message{
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
+}
+.page2_flex{
+	float: left;
+	width: 50%;
+}
+.page2_flex p{
+	font-weight: bold;
+	color:#007eff;
+	text-align: center;
+	position: relative;
+}
+.page3_flex{
+	width: 100%;
+	position: absolute;
+}
+.page3_flex p{
+	font-weight: bold;
+	color:#ffffff;
+	text-align: center;
+	position: relative;
+}
+.page3_flex span{
+	font-size:20px; 
+}
+
+#page4_message{
+	width: 100%;
+	top: 0px;
+	position: absolute;
+}
+.page4_flex{
+	width: 100%;
+}
+#page4_message p{
+	font-weight: bold;
+	color:#007eff;
+	text-align: center;
+	position: relative;
+}
+#page4_message_1{
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
+}
+.page4_flex_1{
+	float: left;
+	width: 50%;
+}
+#page4_message_1 p{
+	font-weight: bold;
+	color:#ffffff;
+	text-align: center;
+	position: relative;
+}
+.page5_flex{
+	width: 100%;
+    bottom: 0px;
+    font-weight: bold;
+
+}
+.page5_flex p{
+	position: relative;
+	color: #ffffff;
+	text-align: center;
+}
+#page5_average{
+	display: flex;
+	float: left;
+	width: 100%;
+}
+
+
+.page7_message,.page8_message,.page9_message{
+	width: 100%;
+	top: 0px;
+	position: absolute;
+	z-index: 100;
+}
+.page7_message_day{
+	float: none;
+}
+.page7_message_day p{
+	position: relative;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+.page7_message_m p{
+	position:relative;
+	width: auto;
+	text-align: center;
+}
+.page7{
+	position:relative;
+	height:25px;
+}
+.page7 p{
+	color:#2f91ff;
+	position: relative;
+	float: left;
+/*	width:100px;*/
+	text-align: center;
+	overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+	font-size: 12px;
+}
+.page7_1{
+	width:70px;
+	margin-left:34px;
+}
+.page7_message span{
+	display: block;
+	color: black;
+	width: 100%;
+	text-align: center;
+	color:#ffffff;
+	font-family: "微软雅黑";
+	font-size: 13px;
+	margin-top: 5px;
+}
+.page8_message p{
+	position: relative;
+	color: white;
+	font-family: "微软雅黑";
+}
+.page8_message img{
+	width: 100%;
+}
+.page8_message p{
+	font-size:20px;
+	margin-left: 25px;
+}
+.page9_message_time{
+	position: relative;
+	top: 40px;
+}
+.page9_message_time span{
+	display: block;
+	color: black;
+	float: left;
+	width: 50%;
+	text-align: center;
+	color:#2f91ff;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+
+
+
+
+.average{
+	width: 80%;
+}
+
+.count{
+	width: 100%;
+	margin-left: 20px;
+	margin-top: 5%;
+}
+.page5_flex img{
+	width: 70%;
+	margin-left:53px;
+	margin-top: 5%;
+}
+.section{
+/*	background-image: url(../img/5.png);*/
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.mark{
+	float: left;
+	width: 30%;
+}
+.m0{
+	margin-top:5%;
+}
+.m0_1{
+	margin-top:5%;
+}
+.m2{
+	border-left:2px solid #ffffff;
+	border-right:2px solid #ffffff;
+}
+.content3 img{
+	height: 90%;
+}
+
+#next{
+    position: absolute;
+    bottom: 31px;
+    left: 47%;
+    width: 0;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    border-right: 4px solid #DBDCEA;
+    border-top: 4px solid #DBDCEA;
+    height: 26px;
+    width: 26px;
+    transform: rotate(133deg);
+    -webkit-transform: rotate(133deg);
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    animation-delay:2.3s;
+}
+
+
+.f1{top:50px ;left: 8%;font-size:50px;animation-delay:0.4s;}
+.f2{top:105px;left: 8%;font-size:40px;animation-delay:0.8s;}
+.f3{top:220px;left: 8%;font-size:20px;animation-delay:1.2s;}
+.f4{top:242px;left: 8%;font-size:90px;animation-delay:1.6s;}
+.f5{top:340px;left: 8%;font-size:20px;animation-delay:2.0s;}
+.f6_1,.f6_2,.f6_3,.f6_4{font-size:20px;animation-delay:0.4s;}
+.f7_1,.f7_2,.f7_3,.f7_4{font-size:90px;animation-delay:0.8s;}
+.f8_1,.f8_2,.f8_3,.f8_4{font-size:20px;margin-bottom: 40px;animation-delay:0.8s;}
+.f9{font-size: 20px;margin-top: 7%;}
+.f10{font-size: 75px;}
+.f11{font-size: 20px;margin-top:15%;}
+.f12{font-size: 30px;margin-top:10%;}
+.f13{font-size: 20px;}
+.f14{font-size: 80px;margin-bottom:35%}
+.m0,.m0_1{font-size: 20px;}
+.m0_2{font-size: 50px;}
+.m1_1,.m2_1,.m3_1{font-size:40px;}
+.fp-controlArrow {top:50%;}
+
+
+
+/*.xf1{margin-top: 20px;}*/
+.f0{margin-top: 67px;}
+.xf0{margin-top: 65px;}
+.xf2{font-size: 20px;margin-top: 20px;}
+.xf3{font-size: 20px;margin-top: 10px;}
+.xf4{margin-right: top:40px;}
+.xf1-1{color:#fef508;font-size: 40px;}
+.xf2-1{font-size: 25px;}
+.xf3-1{color:#de3939;font-size: 25px}
+.xf4-1{color:#bacc22;font-size: 25px}
+.t0{margin-top: 22px;}
+.t1{margin-left: -25px;}
+.t1,.t2{font-size: 30px;}
+
+@media screen and (min-width: 300px) and (max-width: 321px) {
+	canvas{width:320px;position:absolute;z-index: 999;bottom:120px;left: 5px;}
+	.f1{top:50px ;left: 8%;font-size:40px;}
+	.f2{top:105px;left: 8%;font-size:30px;}
+	.f3{top:220px;left: 8%;font-size:17px;}
+	.f4{top:242px;left: 8%;font-size:60px;}
+	.f5{top:320px;left: 8%;font-size:17px;}
+	.f6_1,.f6_2,.f6_3,.f6_4{font-size:20px;}
+	.f7_1,.f7_2,.f7_3,.f7_4{font-size:90px;}
+	.f8_1,.f8_2,.f8_3,.f8_4{font-size:20px;margin-bottom:35px;}
+	.f9{font-size: 20px;margin-top: 5%;}
+	.f10{font-size: 75px;}
+	.f11{font-size: 20px;margin-top:15%;}
+	.f12{font-size: 30px;margin-top:10%;}
+	.f13{font-size: 20px;}
+	.f14{font-size: 80px;margin-bottom:35%}
+	.m0,.m0_1{font-size: 20px;}
+	.m0_2{font-size: 50px;}
+	.m1_1,.m2_1,.m3_1{font-size:40px;}
+	.fp-controlArrow {top:50%;}
+	.page7_1 {margin-left: 28px;}
+}
+@media screen and (min-width: 370px) and (max-width: 400px) {
+	canvas{width:360px;position:absolute;z-index: 999;bottom:45px;left: 15px;}
+	.f1{top:70px ;left: 8%;font-size:50px;}
+	.f2{top:125px;left: 8%;font-size:40px;}
+	.f3{top:250px;left: 8%;font-size:22px;}
+	.f4{top:272px;left: 8%;font-size:91px;}
+	.f5{top:380px;left: 8%;font-size:21px;}
+	.f14{margin-bottom: 60%;}
+	.page5_flex img{margin-left:55px;}
+	.f0{margin-top:73px;}
+	.page7 {height: 21px;}
+}
+
+@media screen and (min-width: 400px) and (max-width: 430px) {
+	canvas{width:414px;position:absolute;z-index: 999;bottom:0px;}
+	.f1{top:80px ;left: 5%;font-size:55px;}
+	.f2{top:135px;left: 5%;font-size:60px;}
+	.f3{top:290px;left: 5%;font-size:28px;}
+	.f4{top:330px;left: 5%;font-size:100px;}
+	.f5{top:450px;left: 5%;font-size:25px;}
+	.f6_1,.f6_2,.f6_3,.f6_4{font-size:25px;}
+	.f7_1,.f7_2,.f7_3,.f7_4{font-size:90px;}
+	.f8_1,.f8_2,.f8_3,.f8_4{font-size:25px;margin-bottom: 70px;}
+	.f9{font-size: 25px;margin-top: 7%;}
+	.f10{font-size: 75px;}
+	.f11{font-size: 25px;margin-top:15%;}
+	.f12{font-size: 35px;margin-top:10%;}
+	.f13{font-size: 30px;}
+	.f14{font-size: 90px;margin-bottom:60%}
+	.m0,.m0_1{font-size: 20px;}
+	.m0_2{font-size: 55px;}
+	.m1_1,.m2_1,.m3_1{font-size:55px;}
+	.fp-controlArrow {top:50%;}
+	.a{font-size: 22px;}
+	.page5_flex img{margin-left:60px;}
+	.f0{margin-top:85px;}
+	.page7_1 {margin-left: 51px;}
+	.img9{margin-top:40px;}
+	.page9_message {top: 48px;}
+}

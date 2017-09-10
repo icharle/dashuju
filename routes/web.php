@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::any('index','ExcelController@index');
 
 Route::any('export','ExcelController@export');
 Route::any('import','ExcelController@import');
