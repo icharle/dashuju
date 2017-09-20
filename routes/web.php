@@ -14,6 +14,7 @@
 
 
 Route::any('index','ExcelController@index');
+Route::any('show','ExcelController@show');
 
 Route::any('export','ExcelController@export');
 Route::any('import','ExcelController@import');

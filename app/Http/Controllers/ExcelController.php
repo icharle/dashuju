@@ -34,17 +34,25 @@ use Illuminate\Http\Request;
 use Excel;
 use App\test;
 use App\Student;
+use Illuminate\Support\Facades\Input;
 
 class ExcelController extends Controller
 {
 
+
+    //登录界面
+    public function index()
+    {
+        return view('index');
+    }
     /**
      * 查询收据
      */
-    public function index()
+    public function show()
     {
-        $zong = zong::where('stuid','201330092088')->first();
-        $lib = xiaof::where('stuid','201330092088')->first();
+        $input = Input::except('_token');
+        $zong = zong::where('stuid',$input)->first();
+        $lib = xiaof::where('stuid',$input)->first();
         return view('Index.index',compact('zong','lib'));
     }
 
